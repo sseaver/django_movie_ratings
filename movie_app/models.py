@@ -9,6 +9,9 @@ class Rater(models.Model):
     occupation = models.CharField(max_length=20)
     zipcode = models.CharField(max_length=10)
 
+    def __str__(self):
+        return str(self.id)
+
 
 class Movie(models.Model):
     name = models.CharField(max_length=100)
@@ -35,9 +38,15 @@ class Movie(models.Model):
     war = models.BooleanField()
     western = models.BooleanField()
 
+    def __str__(self):
+        return self.name
+
 
 class Data(models.Model):
     userid = models.ForeignKey(Rater)
     itemid = models.ForeignKey(Movie)
     rating = models.IntegerField()
     timestamp = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.userid

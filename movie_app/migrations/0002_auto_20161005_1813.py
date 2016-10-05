@@ -10,15 +10,15 @@ def add_info(apps, schema_editor):
     Movie = apps.get_model("movie_app", "Movie")
     Data = apps.get_model("movie_app", "Data")
 
-    with open("u.user.csv") as open_file:
+    with open("u.user.csv", encoding="latin1") as open_file:
         reader = csv.reader(open_file, delimiter="|")
         for row in reader:
             Rater.objects.create(id=row[0], age=row[1], gender=row[2], occupation=row[3], zipcode=row[4])
         print (row)
 
-    raise Exception("BOOMSHAKALAKA")
+    # raise Exception("BOOMSHAKALAKA")
 
-    with open("u.item.csv") as open_file:
+    with open("u.item.csv", encoding="latin1") as open_file:
         reader = csv.reader(open_file, delimiter="|")
         for row in reader:
             Movie.objects.create(id=row[0], name=row[1], date=row[2], video_release=row[3], imdb_url=row[4],
@@ -27,16 +27,16 @@ def add_info(apps, schema_editor):
                                  filmnoir=row[15], horror=row[16], musical=row[17], mystery=row[18], romance=row[19],
                                  scifi=row[20], thriller=row[21], war=row[22], western=row[23])
         print (row)
-    raise Exception("BOOMSHAKALAKA")
+    # raise Exception("BOOMSHAKALAKA")
 
-    with open("u.data.csv") as open_file:
+    with open("u.data.csv", encoding="latin1") as open_file:
         reader = csv.reader(open_file, delimiter="\t")
         for row in reader:
             userid = Rater.objects.get(id=row[0])
             itemid = Movie.objects.get(id=row[1])
             Data.objects.create(userid=userid, itemid=itemid, rating=row[2], timestamp=row[3])
         print (row)
-    raise Exception("BOOMSHAKALAKA")
+    # raise Exception("BOOMSHAKALAKA")
 
 
 class Migration(migrations.Migration):
